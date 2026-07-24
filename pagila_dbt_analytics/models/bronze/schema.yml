@@ -29,8 +29,8 @@ sources:
 
 
 models:
-  - name: actor
-    description: Source table containing actor information.
+  - name: bronze_actor
+    description: Bronze table containing actor information.
 
     config:
       contract:
@@ -57,9 +57,8 @@ models:
         data_type: timestamp without time zone
   
 
-  - name: customer
-    description: Source table containing customer information.
-
+  - name: bronze_customer
+    description: Bronze table containing customer information. 
     config:
       contract:
         enforced: true
