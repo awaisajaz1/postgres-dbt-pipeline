@@ -11,4 +11,5 @@ select
         'Get to work!'
     {% endif %} as weekend_message,
     '{{target.schema}}' as target_schema,
-    '{{target.name}}' as target_name
+    '{{target.name}}' as target_name,
+    '{{target.database}}' as target_database
