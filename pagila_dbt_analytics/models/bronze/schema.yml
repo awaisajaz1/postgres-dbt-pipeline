@@ -231,3 +231,42 @@ models:
       - name: last_update
         description: contains the last update timestamp for the film
         data_type: timestamp without time zone
+  
+
+  - name: bronze_rental
+    description: Bronze table containing rental information. 
+    config:
+      contract:
+        enforced: true
+
+    columns:
+      - name: rental_id
+        description: unique identifier for each rental
+        data_type: integer
+        tests:
+          - not_null
+          - unique
+
+      - name: rental_date
+        description: contains the date and time of the rental
+        data_type: timestamp without time zone
+
+      - name: inventory_id
+        description: contains the inventory identifier for the rented item
+        data_type: integer
+
+      - name: customer_id
+        description: contains the customer identifier for the rental
+        data_type: integer
+
+      - name: return_date
+        description: contains the date and time when the rented item was returned
+        data_type: timestamp without time zone
+
+      - name: staff_id
+        description: contains the staff identifier who processed the rental
+        data_type: smallint
+
+      - name: last_update
+        description: contains the last update timestamp for the rental record
+        data_type: timestamp without time zone
