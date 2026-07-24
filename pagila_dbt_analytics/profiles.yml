@@ -1,0 +1,12 @@
+pagila_dbt_analytics:
+  outputs:
+    dev:
+      dbname: pagila
+      host: 127.0.0.1
+      pass: admin123
+      port: 5432
+      schema: public
+      threads: 2
+      type: postgres
+      user: postgres
+  target: dev
