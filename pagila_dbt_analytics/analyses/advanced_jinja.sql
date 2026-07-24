@@ -21,6 +21,7 @@ PG       194
 {# Convert vertical output to horizontal #}
 
 select
+    'Total' as rating,
     {% for one_rate in rating_list %}
         sum(case when rating='{{ one_rate }}' then rating_count else 0 end) as "{{ one_rate }}"
         {% if not loop.last %},{% endif %}
