@@ -37,3 +37,9 @@ models:
     bronze:
       +materialized: table
       schema: bronze
+seeds:
+  pagila_dbt_analytics:
+    # Config indicated by + and applies to all files under seeds/
+    +schema: seeds
+    +tags:
+      - seeds
