@@ -1,7 +1,7 @@
 version: 2
 
 sources:
-  - name: pagila
+  - name: pagila_src
     schema: public
 
     tables:
@@ -40,6 +40,9 @@ models:
       - name: actor_id
         description: '{{doc("actor_id")}}'
         data_type: smallint
+        tests:
+          - not_null
+          - unique
 
       - name: first_name
         description: '{{doc("first_name")}}'
@@ -53,3 +56,54 @@ models:
         description: '{{doc("last_update")}}'
         data_type: timestamp without time zone
   
+
+  - name: customer
+    description: Source table containing customer information.
+
+    config:
+      contract:
+        enforced: true
+
+    columns:
+      - name: customer_id
+        description: '{{doc("customer_id")}}'
+        data_type: smallint
+        tests:
+          - not_null
+          - unique
+
+      - name: store_id
+        description: '{{doc("store_id")}}'
+        data_type: smallint
+
+      - name: first_name
+        description: '{{doc("first_name")}}'
+        data_type: varchar
+
+      - name: last_name
+        description: '{{doc("last_name")}}'
+        data_type: varchar
+
+      - name: email
+        description: '{{doc("email")}}'
+        data_type: varchar
+
+      - name: address_id
+        description: '{{doc("address_id")}}'
+        data_type: smallint
+
+      - name: activebool
+        description: '{{doc("activebool")}}'
+        data_type: boolean
+
+      - name: create_date
+        description: '{{doc("create_date")}}'
+        data_type: timestamp without time zone
+
+      - name: last_update
+        description: '{{doc("last_update")}}'
+        data_type: timestamp without time zone
+
+      - name: active
+        description: '{{doc("active")}}'
+        data_type: smallint
