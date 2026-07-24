@@ -9,4 +9,6 @@ select
         'Take a break!'
     {% else %}
         'Get to work!'
-    {% endif %} as weekend_message
+    {% endif %} as weekend_message,
+    '{{target.schema}}' as target_schema,
+    '{{target.name}}' as target_name
