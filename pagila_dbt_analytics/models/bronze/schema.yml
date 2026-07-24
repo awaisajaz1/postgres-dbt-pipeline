@@ -164,3 +164,70 @@ models:
       - name: active
         description: contains the active status of the customer
         data_type: integer
+  
+
+  - name: bronze_film
+    description: Bronze table containing film information. 
+    config:
+      contract:
+        enforced: true
+
+    columns:
+      - name: film_id
+        description: unique identifier for each film
+        data_type: smallint
+        tests:
+          - not_null
+          - unique
+
+      - name: title
+        description: contains the title of the film
+        data_type: varchar
+
+      - name: description
+        description: contains the description of the film
+        data_type: text
+
+      - name: release_year
+        description: contains the release year of the film
+        data_type: integer
+
+      - name: language_id
+        description: contains the language identifier for the film
+        data_type: smallint
+
+      - name: original_language_id
+        description: contains the original language identifier for the film
+        data_type: smallint
+
+      - name: rental_duration
+        description: contains the rental duration for the film
+        data_type: smallint
+
+      - name: rental_rate
+        description: contains the rental rate for the film
+        data_type: numeric(4,2)
+
+      - name: length
+        description: contains the length of the film in minutes
+        data_type: smallint
+
+      - name: replacement_cost
+        description: contains the replacement cost for the film
+        data_type: numeric(5,2)
+
+      - name: rating
+        description: contains the rating of the film (e.g., G, PG, PG-13, R, NC-17)
+        data_type: text
+
+      - name: special_features
+        description: contains any special features associated with the film (e.g., Trailers, Commentaries, Deleted Scenes, Behind the Scenes)
+        data_type: text
+      
+      - name: fulltext
+        description: contains the full-text search vector for the film
+        data_type: tsvector
+      
+      - name: last_update
+        description: contains the last update timestamp for the film
+        data_type: timestamp without time zone
