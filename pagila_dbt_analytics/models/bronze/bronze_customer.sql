@@ -22,4 +22,4 @@ select
     last_update,
     active
 from customer_cte
-where rn = 1;
+where rn = 1
