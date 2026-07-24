@@ -1,4 +1,18 @@
-{% set rating_list=['G', 'PG', 'PG-13', 'R', 'NC-17']%}
+{# {% set rating_list=['G', 'PG', 'PG-13', 'R', 'NC-17']%} #}
+
+{% set query %}
+    select distinct rating
+    from {{ ref('bronze_film') }}
+    order by rating
+{% endset %}
+
+{% set results = run_query(query) %}
+
+{% if execute %}
+    {% set rating_list = results.columns[0].values() %}
+{% else %}
+    {% set rating_list = [] %}
+{% endif %}
 
 with rating_cte as (
     select
