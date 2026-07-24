@@ -1,0 +1,29 @@
+[0m12:44:58.542847 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000014E201B5A90>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000014E2245BC10>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000014E2245BE20>]}
+
+
+============================== 12:44:58.547770 | 32ab8922-7faa-47a3-b711-5214154e5137 ==============================
+[0m12:44:58.547770 [info ] [MainThread]: Running with dbt=1.10.22
+[0m12:44:58.548781 [debug] [MainThread]: running dbt with arguments {'debug': 'False', 'fail_fast': 'False', 'log_cache_events': 'False', 'send_anonymous_usage_stats': 'True', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'cache_selected_only': 'False', 'invocation_command': 'dbt init pagila_dbt_analytics', 'log_format': 'default', 'version_check': 'True', 'empty': 'None', 'printer_width': '80', 'partial_parse': 'True', 'log_path': 'logs', 'quiet': 'False', 'warn_error': 'None', 'write_json': 'True', 'introspect': 'True', 'target_path': 'None', 'no_print': 'None', 'static_parser': 'True', 'profiles_dir': 'C:\\Users\\OMEN\\.dbt', 'use_experimental_parser': 'False', 'use_colors': 'True', 'indirect_selection': 'eager'}
+[0m12:44:58.571223 [debug] [MainThread]: Starter project path: G:\Coding\postgres-dbt-pipeline\venv\lib\site-packages\dbt\include\starter_project
+[0m12:44:58.703711 [info ] [MainThread]: 
+Your new dbt project "pagila_dbt_analytics" was created!
+
+For more information on how to configure the profiles.yml file,
+please consult the dbt documentation here:
+
+  https://docs.getdbt.com/docs/configure-your-profile
+
+One more thing:
+
+Need help? Don't hesitate to reach out to us via GitHub issues or on Slack:
+
+  https://community.getdbt.com/
+
+Happy modeling!
+
+[0m12:44:58.704714 [info ] [MainThread]: Setting up your profile.
+[0m12:46:46.136456 [info ] [MainThread]: Profile pagila_dbt_analytics written to C:\Users\OMEN\.dbt\profiles.yml using target's profile_template.yml and your supplied values. Run 'dbt debug' to validate the connection.
+[0m12:46:46.138341 [debug] [MainThread]: Command `dbt init` succeeded at 12:46:46.138341 after 107.74 seconds
+[0m12:46:46.139342 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000014E201B5A90>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000014E2245B490>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000014E2245BF10>]}
+[0m12:46:46.140342 [debug] [MainThread]: Flushing usage events
+[0m12:46:47.685498 [debug] [MainThread]: An error was encountered while trying to flush usage events
