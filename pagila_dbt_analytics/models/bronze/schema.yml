@@ -6,26 +6,84 @@ sources:
 
     tables:
       - name: actor
+        description: Source table containing actor information.
+        columns:
+          - name: actor_id
+            description: '{{doc("actor_id")}}'
+          - name: first_name
+            description: '{{doc("first_name")}}'
+          - name: last_name
+            description: '{{doc("last_name")}}'
+          - name: last_update
+            description: '{{doc("last_update")}}'
+
       - name: address
+        description: Source table containing address information.
       - name: category
+        description: Source table containing category information.
       - name: city
+        description: Source table containing city information.
       - name: country
+        description: Source table containing country information.
       - name: customer
+        description: Source table containing customer information.
       - name: film
+        description: Source table containing film information.
+        columns:
+          - name: film_id
+            description: '{{doc("film_id")}}'
+          - name: title
+            description: '{{doc("title")}}'
+          - name: description
+            description: '{{doc("description")}}'
+          - name: release_year
+            description: '{{doc("release_year")}}'
+          - name: language_id
+            description: '{{doc("language_id")}}'
+          - name: original_language_id
+            description: '{{doc("original_language_id")}}'
+          - name: rental_duration
+            description: '{{doc("rental_duration")}}'
+          - name: rental_rate
+            description: '{{doc("rental_rate")}}'
+          - name: length
+            description: '{{doc("length")}}'
+          - name: replacement_cost
+            description: '{{doc("replacement_cost")}}'
+          - name: rating
+            description: '{{doc("rating")}}'
+          - name: special_features
+            description: '{{doc("special_features")}}'
+          - name: last_update
+            description: '{{doc("last_update")}}'
       - name: film_actor
+        description: Source table containing film_actor information.
       - name: film_category
+        description: Source table containing film_category information.
       - name: inventory
+        description: Source table containing inventory information.
       - name: language
+        description: Source table containing language information.
       - name: payment
+        description: Source table containing payment information.
       - name: payment_p2007_01
+        description: Source table containing payment information for January 2007.
       - name: payment_p2007_02
+        description: Source table containing payment information for February 2007.
       - name: payment_p2007_03
+        description: Source table containing payment information for March 2007.
       - name: payment_p2007_04
+        description: Source table containing payment information for April 2007.
       - name: payment_p2007_05
+        description: Source table containing payment information for May 2007.
       - name: payment_p2007_06
+        description: Source table containing payment information for June 2007.
       - name: rental
+        description: Source table containing rental information.
       - name: staff
+        description: Source table containing staff information.
       - name: store
+        description: Source table containing store information.
 
 
 models:
@@ -38,22 +96,22 @@ models:
 
     columns:
       - name: actor_id
-        description: '{{doc("actor_id")}}'
+        description: unique identifier for each actor
         data_type: smallint
         tests:
           - not_null
           - unique
 
       - name: first_name
-        description: '{{doc("first_name")}}'
+        description: contains the first name of the actor
         data_type: varchar
 
       - name: last_name
-        description: '{{doc("last_name")}}'
+        description: contains the last name of the actor
         data_type: varchar
 
       - name: last_update
-        description: '{{doc("last_update")}}'
+        description: contains the last update timestamp for the actor
         data_type: timestamp without time zone
   
 
@@ -65,44 +123,44 @@ models:
 
     columns:
       - name: customer_id
-        description: '{{doc("customer_id")}}'
+        description: unique identifier for each customer
         data_type: integer
         tests:
           - not_null
           - unique
 
       - name: store_id
-        description: '{{doc("store_id")}}'
+        description: contains the store identifier for the customer
         data_type: smallint
 
       - name: first_name
-        description: '{{doc("first_name")}}'
+        description: contains the first name of the customer
         data_type: varchar
 
       - name: last_name
-        description: '{{doc("last_name")}}'
+        description: contains the last name of the customer
         data_type: varchar
 
       - name: email
-        description: '{{doc("email")}}'
+        description: contains the email address of the customer
         data_type: varchar
 
       - name: address_id
-        description: '{{doc("address_id")}}'
+        description: contains the address identifier for the customer
         data_type: smallint
 
       - name: activebool
-        description: '{{doc("activebool")}}'
+        description: contains the active status of the customer
         data_type: boolean
 
       - name: create_date
-        description: '{{doc("create_date")}}'
+        description: contains the creation date for the customer
         data_type: date
 
       - name: last_update
-        description: '{{doc("last_update")}}'
+        description: contains the last update timestamp for the customer
         data_type: timestamp without time zone
 
       - name: active
-        description: '{{doc("active")}}'
+        description: contains the active status of the customer
         data_type: integer
