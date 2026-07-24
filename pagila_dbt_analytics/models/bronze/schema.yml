@@ -29,7 +29,7 @@ sources:
 
 
 models:
-  - name: bronze_actor
+  - name: bronze_actors
     description: Bronze table containing actor information.
 
     config:
@@ -66,7 +66,7 @@ models:
     columns:
       - name: customer_id
         description: '{{doc("customer_id")}}'
-        data_type: smallint
+        data_type: integer
         tests:
           - not_null
           - unique
@@ -97,7 +97,7 @@ models:
 
       - name: create_date
         description: '{{doc("create_date")}}'
-        data_type: timestamp without time zone
+        data_type: date
 
       - name: last_update
         description: '{{doc("last_update")}}'
@@ -105,4 +105,4 @@ models:
 
       - name: active
         description: '{{doc("active")}}'
-        data_type: smallint
+        data_type: integer

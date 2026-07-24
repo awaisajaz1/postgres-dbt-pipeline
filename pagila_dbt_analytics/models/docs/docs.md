@@ -129,3 +129,7 @@ The date and time when the rental was returned.
 {% docs staff_id %}
 The unique identifier for the staff member who processed the rental.
 {% enddocs %}
+
+{% docs activebool %}
+Boolean indicating whether the customer is currently active.
+{% enddocs %}
