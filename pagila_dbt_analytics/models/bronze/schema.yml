@@ -270,3 +270,29 @@ models:
       - name: last_update
         description: contains the last update timestamp for the rental record
         data_type: timestamp without time zone
+  
+  - name: bronze_inventory
+    description: Bronze table containing inventory information. 
+    config:
+      contract:
+        enforced: true
+
+    columns:
+      - name: inventory_id
+        description: unique identifier for each inventory item
+        data_type: integer
+        tests:
+          - not_null
+          - unique
+
+      - name: film_id
+        description: contains the film identifier for the inventory item
+        data_type: smallint
+
+      - name: store_id
+        description: contains the store identifier where the inventory item is located
+        data_type: smallint
+
+      - name: last_update
+        description: contains the last update timestamp for the inventory record
+        data_type: timestamp without time zone
