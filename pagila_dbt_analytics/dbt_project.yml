@@ -4,7 +4,8 @@
 # name or the intended use of these models
 name: 'pagila_dbt_analytics'
 version: '1.0.0'
-is_learning_project: true
+vars:
+  is_learning_project: true
 
 # This setting configures which "profile" dbt uses for this project.
 profile: 'pagila_dbt_analytics'
@@ -33,6 +34,6 @@ clean-targets:         # directories to be removed by `dbt clean`
 models:
   pagila_dbt_analytics:
     # Config indicated by + and applies to all files under models/example/
-    raw:
+    bronze:
       +materialized: table
       schema: bronze
