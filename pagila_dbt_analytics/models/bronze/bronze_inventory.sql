@@ -1,3 +1,9 @@
+{{ config(
+    materialized='table',
+    pre_hook="{{ start_batch() }}",
+    post_hook="{{ end_batch() }}"
+) }}
+
 {% set cols= dbt_utils.star(from=source('pagila_src', 'inventory')) %}
 select
     {{cols}},
