@@ -4,21 +4,19 @@
 
 insert into audit.etl_batch
 (
-    pipeline_name,
+    invocation_id,
     run_started_at,
     status,
     environment,
-    dbt_version,
-    invocation_id
+    dbt_version
 )
 values
 (
-    '{{ model.name }}',
+    '{{ invocation_id }}',
     current_timestamp,
     'RUNNING',
     '{{ target.name }}',
-    '{{ dbt_version }}',
-    '{{ invocation_id }}'
+    '{{ dbt_version }}'
 );
 
 {% endset %}
