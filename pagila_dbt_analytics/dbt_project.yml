@@ -53,6 +53,11 @@ models:
     silver:
       +materialized: table
       schema: silver
+      +pre-hook:
+        - "{{ log_model_start() }}"
+
+      +post-hook:
+        - "{{ log_model_end() }}"
     gold:
       dimensions:
         +materialized: table

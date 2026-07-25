@@ -43,9 +43,6 @@ models:
           - not_null
           - unique
 
-      - name: store_id
-        description: contains the store identifier for the customer
-        data_type: smallint
 
       - name: full_name
         description: contains the full name of the customer
@@ -70,10 +67,6 @@ models:
       - name: last_update
         description: contains the last update timestamp for the customer
         data_type: timestamp without time zone
-
-      - name: active
-        description: contains the active status of the customer
-        data_type: integer
       
       - name: bronze_load_dts
         description: contains the timestamp when the record was loaded into the bronze table
