@@ -48,7 +48,7 @@ models:
         - "{{ log_model_start() }}"
 
       +post-hook:
-        - "{{ end_batch() }}"
+        - "{{ log_model_end() }}"
 
     silver:
       +materialized: table
