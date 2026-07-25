@@ -8,6 +8,4 @@
 
     {{ create_etl_run_log() }}
 
-    {{ create_etl_error_log() }}
-
 {% endmacro %}

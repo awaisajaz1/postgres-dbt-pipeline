@@ -10,13 +10,17 @@ insert into audit.etl_batch
     environment,
     dbt_version
 )
-values
-(
+select
     '{{ invocation_id }}',
     current_timestamp,
     'RUNNING',
     '{{ target.name }}',
     '{{ dbt_version }}'
+where not exists
+(
+    select 1
+    from audit.etl_batch
+    where invocation_id='{{ invocation_id }}'
 );
 
 {% endset %}
