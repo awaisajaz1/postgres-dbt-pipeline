@@ -1,3 +1,11 @@
+{# {{ log("Model: " ~ this.identifier, info=True) }}
+{{ log("Invocation: " ~ invocation_id, info=True) }} #}
+
+{{ config(
+    materialized='table'
+) }}
+
+
 select
     actor_id,
     first_name,
