@@ -2,7 +2,14 @@
     materialized='incremental',
     unique_key='film_id',
     incremental_strategy='merge',
-    on_schema_change='fail'
+    on_schema_change='fail',
+    meta={
+        "rows_processed_sql":
+        "select count(*) from bronze.bronze_film
+         where bronze_load_dts >
+         (select coalesce(max(bronze_load_dts),'1900-01-01')
+          from silver.silver_film)"
+    }
 ) }}
 
 with src as (
