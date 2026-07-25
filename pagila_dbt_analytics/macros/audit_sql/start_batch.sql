@@ -1,4 +1,4 @@
-{% macro start_batch(model_name) %}
+{% macro start_batch() %}
 
 {% set sql %}
 
@@ -13,7 +13,7 @@ insert into audit.etl_batch
 )
 values
 (
-    '{{ model_name }}',
+    '{{ model.name }}',
     current_timestamp,
     'RUNNING',
     '{{ target.name }}',
