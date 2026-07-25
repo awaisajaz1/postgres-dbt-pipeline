@@ -122,6 +122,37 @@ models:
         description: contains the timestamp when the record was loaded into the bronze table
         data_type: timestamp without time zone
   
+  
+  - name: silver_inventory
+    description: Silver table containing inventory information. 
+    config:
+      contract:
+        enforced: true
+
+    columns:
+      - name: inventory_id
+        description: unique identifier for each inventory item
+        data_type: smallint
+        tests:
+          - not_null
+          - unique
+
+      - name: film_id
+        description: contains the film identifier for the inventory item
+        data_type: smallint
+
+      - name: store_id
+        description: contains the store identifier for the inventory item
+        data_type: smallint
+
+      - name: last_update
+        description: contains the last update timestamp for the inventory item
+        data_type: timestamp without time zone
+      
+      - name: bronze_load_dts
+        description: contains the timestamp when the record was loaded into the bronze table
+        data_type: timestamp without time zone
+  
 
   - name: silver_rental
     description: Silver table containing rental information in transient state.
