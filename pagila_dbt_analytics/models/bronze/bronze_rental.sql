@@ -1,7 +1,5 @@
 {{ config(
-    materialized='table',
-    pre_hook="{{ start_batch() }}",
-    post_hook="{{ end_batch() }}"
+    materialized='table'
 ) }}
 
 {% set cols= dbt_utils.star(from=source('pagila_src', 'rental')) %}

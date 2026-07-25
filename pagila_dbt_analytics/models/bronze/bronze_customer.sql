@@ -1,7 +1,5 @@
 {{ config(
-    materialized='table',
-    pre_hook="{{ start_batch() }}",
-    post_hook="{{ end_batch() }}"
+    materialized='table'
 ) }}
 
 with customer_cte as (
