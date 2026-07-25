@@ -5,15 +5,26 @@
 update audit.etl_run_log
 set
     finished_at = current_timestamp,
-    status = 'SUCCESS'
+
+    status = 'SUCCESS',
+
+    rows_processed =
+    (
+        select count(*)
+        from {{ this }}
+    )
+
 where
-    batch_id = (
+    batch_id =
+    (
         select batch_id
         from audit.etl_batch
-        where invocation_id = '{{ invocation_id }}'
+        where invocation_id='{{ invocation_id }}'
     )
-    and model_name = '{{ model.name }}'
-    and status = 'RUNNING';
+
+and model_name='{{ model.name }}'
+
+and status='RUNNING';
 
 {% endset %}
 
