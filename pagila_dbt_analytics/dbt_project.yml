@@ -23,7 +23,11 @@ snapshot-paths: ["snapshots"]
 clean-targets:         # directories to be removed by `dbt clean`
   - "target"
   - "dbt_packages"
+on-run-start:
+  - "{{ start_batch() }}"
 
+on-run-end:
+  - "{{ end_batch() }}"
 
 # Configuring models
 # Full documentation: https://docs.getdbt.com/docs/configuring-models
@@ -41,7 +45,7 @@ models:
       +materialized: table
       schema: bronze
       +pre-hook:
-        - "{{ start_batch() }}"
+        - "{{ log_model_start() }}"
 
       +post-hook:
         - "{{ end_batch() }}"
