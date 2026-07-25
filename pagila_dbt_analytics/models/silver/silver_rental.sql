@@ -1,8 +1,11 @@
-{# {{ config(
+{{ config(
     materialized='table',
     contract={
         'enforced': true
-    }
+    },
+    post_hook=[
+        "{{ update_watermark() }}"
+    ]
 ) }}
 
 with src as (
@@ -18,12 +21,7 @@ with src as (
         bronze_load_dts
     from {{ ref('bronze_rental') }}
 
-    where bronze_load_dts >
-    (
-        select
-            coalesce(max(bronze_load_dts), '1900-01-01'::timestamp)
-        from {{ ref('fact_rental') }}
-    )
+    where bronze_load_dts > {{ get_watermark(model.name) }}
 
 ),
 
@@ -49,4 +47,4 @@ select
     last_update,
     bronze_load_dts
 from dedup
-where rn = 1 #}
+where rn = 1
