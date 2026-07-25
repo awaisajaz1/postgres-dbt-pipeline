@@ -34,7 +34,7 @@ dedup as (
 
 select
     actor_id,
-    first_name || ' ' || last_name as actor_name,
+    (first_name || ' ' || last_name)::varchar as actor_name,
     last_update,
     bronze_load_dts
 from dedup

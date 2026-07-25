@@ -34,7 +34,7 @@ dedup as (
 
 select
     customer_id,
-    first_name || ' ' || last_name as full_name,
+    (first_name || ' ' || last_name)::varchar as full_name,
     email,
     address_id,
     activebool,
