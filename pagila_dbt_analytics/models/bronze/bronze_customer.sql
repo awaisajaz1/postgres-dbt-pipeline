@@ -20,6 +20,7 @@ select
     activebool,
     create_date,
     last_update,
-    active
+    active,
+    current_timestamp() as bronze_loaded_at
 from customer_cte
 where rn = 1

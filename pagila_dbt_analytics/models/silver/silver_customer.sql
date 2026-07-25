@@ -10,9 +10,9 @@ with src as (
     from {{ ref('bronze_customer') }}
 
     {% if is_incremental() %}
-    where last_update >
+    where bronze_loaded_at >
         (
-            select coalesce(max(last_update),'1900-01-01')
+            select coalesce(max(bronze_loaded_at),'1900-01-01')
             from {{ this }}
         )
     {% endif %}
@@ -38,6 +38,7 @@ select
     address_id,
     activebool,
     create_date,
-    last_update
+    last_update,
+    bronze_loaded_at
 from dedup
 where rn = 1
