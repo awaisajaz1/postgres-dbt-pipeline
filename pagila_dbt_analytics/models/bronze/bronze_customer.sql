@@ -21,6 +21,6 @@ select
     create_date,
     last_update,
     active,
-    current_timestamp() as bronze_loaded_at
+    CURRENT_TIMESTAMP::timestamp  as bronze_load_dts
 from customer_cte
 where rn = 1

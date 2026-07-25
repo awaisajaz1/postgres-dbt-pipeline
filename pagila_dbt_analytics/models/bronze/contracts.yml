@@ -113,6 +113,10 @@ models:
       - name: last_update
         description: contains the last update timestamp for the actor
         data_type: timestamp without time zone
+      
+      - name: bronze_load_dts
+        description: contains the timestamp when the record was loaded into the bronze table
+        data_type: timestamp without time zone
   
 
   - name: bronze_customer
@@ -164,6 +168,10 @@ models:
       - name: active
         description: contains the active status of the customer
         data_type: integer
+      
+      - name: bronze_load_dts
+        description: contains the timestamp when the record was loaded into the bronze table
+        data_type: timestamp without time zone
   
 
   - name: bronze_film
@@ -231,6 +239,10 @@ models:
       - name: last_update
         description: contains the last update timestamp for the film
         data_type: timestamp without time zone
+
+      - name: bronze_load_dts
+        description: contains the timestamp when the record was loaded into the bronze table
+        data_type: timestamp without time zone
   
 
   - name: bronze_rental
@@ -270,7 +282,11 @@ models:
       - name: last_update
         description: contains the last update timestamp for the rental record
         data_type: timestamp without time zone
-  
+
+      - name: bronze_load_dts
+        description: contains the timestamp when the record was loaded into the bronze table
+        data_type: timestamp without time zone
+
   - name: bronze_inventory
     description: Bronze table containing inventory information. 
     config:
@@ -295,4 +311,8 @@ models:
 
       - name: last_update
         description: contains the last update timestamp for the inventory record
+        data_type: timestamp without time zone
+
+      - name: bronze_load_dts
+        description: contains the timestamp when the record was loaded into the bronze table
         data_type: timestamp without time zone
