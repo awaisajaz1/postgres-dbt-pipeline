@@ -4,7 +4,7 @@
         'enforced': true
     },
     post_hook=[
-        "{{ update_watermark() }}"
+        "{{ update_watermark('bronze_load_dts') }}"
     ]
 ) }}
 
