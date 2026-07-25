@@ -1,0 +1,40 @@
+{{ config(
+    materialized='incremental',
+    unique_key='actor_id',
+    incremental_strategy='merge'
+) }}
+
+with src as (
+
+    select *
+    from {{ ref('bronze_actors') }}
+
+    {% if is_incremental() %}
+    where bronze_load_dts >
+        (
+            select coalesce(max(bronze_load_dts),'1900-01-01')
+            from {{ this }}
+        )
+    {% endif %}
+
+),
+
+dedup as (
+
+    select
+        *,
+        row_number() over (
+            partition by actor_id
+            order by last_update desc
+        ) as rn
+    from src
+
+)
+
+select
+    actor_id,
+    first_name || ' ' || last_name as actor_name,
+    last_update,
+    bronze_load_dts
+from dedup
+where rn = 1
