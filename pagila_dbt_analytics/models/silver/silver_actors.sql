@@ -1,7 +1,8 @@
 {{ config(
     materialized='incremental',
     unique_key='actor_id',
-    incremental_strategy='merge'
+    incremental_strategy='merge',
+    on_schema_change='fail'
 ) }}
 
 with src as (

@@ -1,0 +1,124 @@
+version: 2
+
+models:
+  - name: silver_actors
+    description: Silver table containing actor information.
+
+    config:
+      contract:
+        enforced: true
+
+    columns:
+      - name: actor_id
+        description: unique identifier for each actor
+        data_type: smallint
+        tests:
+          - not_null
+          - unique
+
+      - name: actor_name
+        description: contains the full name of the actor
+        data_type: varchar
+
+      - name: last_update
+        description: contains the last update timestamp for the actor
+        data_type: timestamp without time zone
+      
+      - name: bronze_load_dts
+        description: contains the timestamp when the record was loaded into the bronze table
+        data_type: timestamp without time zone
+  
+
+  - name: silver_customer
+    description: Silver table containing customer information. 
+    config:
+      contract:
+        enforced: true
+
+    columns:
+      - name: customer_id
+        description: unique identifier for each customer
+        data_type: integer
+        tests:
+          - not_null
+          - unique
+
+      - name: store_id
+        description: contains the store identifier for the customer
+        data_type: smallint
+
+      - name: full_name
+        description: contains the full name of the customer
+        data_type: varchar
+
+      - name: email
+        description: contains the email address of the customer
+        data_type: varchar
+
+      - name: address_id
+        description: contains the address identifier for the customer
+        data_type: smallint
+
+      - name: activebool
+        description: contains the active status of the customer
+        data_type: boolean
+
+      - name: create_date
+        description: contains the creation date for the customer
+        data_type: date
+
+      - name: last_update
+        description: contains the last update timestamp for the customer
+        data_type: timestamp without time zone
+
+      - name: active
+        description: contains the active status of the customer
+        data_type: integer
+      
+      - name: bronze_load_dts
+        description: contains the timestamp when the record was loaded into the bronze table
+        data_type: timestamp without time zone
+  
+
+  - name: silver_film
+    description: Silver table containing film information. 
+    config:
+      contract:
+        enforced: true
+
+    columns:
+      - name: film_id
+        description: unique identifier for each film
+        data_type: smallint
+        tests:
+          - not_null
+          - unique
+
+      - name: title
+        description: contains the title of the film
+        data_type: varchar
+
+      - name: description
+        description: contains the description of the film
+        data_type: text
+
+      - name: release_year
+        description: contains the release year of the film
+        data_type: integer
+
+      - name: rental_rate
+        description: contains the rental rate for the film
+        data_type: numeric(4,2)
+
+      - name: rating
+        description: contains the rating of the film (e.g., G, PG, PG-13, R, NC-17)
+        data_type: text
+      
+      - name: last_update
+        description: contains the last update timestamp for the film
+        data_type: timestamp without time zone
+
+      - name: bronze_load_dts
+        description: contains the timestamp when the record was loaded into the bronze table
+        data_type: timestamp without time zone
+  
