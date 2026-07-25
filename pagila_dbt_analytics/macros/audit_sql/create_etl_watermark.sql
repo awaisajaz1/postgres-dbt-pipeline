@@ -4,12 +4,13 @@
 
 create table if not exists audit.etl_watermark
 (
-    pipeline_name          varchar(100) primary key,
-    last_success_dts       timestamp,
-    current_watermark_dts  timestamp,
-    previous_watermark_dts timestamp,
-    status                 varchar(20),
-    updated_at             timestamp
+    watermark_id      bigserial primary key,
+    model_name        varchar(100) not null unique,
+    layer_name        varchar(20) not null,
+    watermark_column  varchar(100) not null,
+    last_watermark    timestamp not null,
+    updated_at        timestamp not null default current_timestamp,
+    batch_id          bigint
 );
 
 
