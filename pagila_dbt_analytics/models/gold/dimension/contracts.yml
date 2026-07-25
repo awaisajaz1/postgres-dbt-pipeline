@@ -1,0 +1,103 @@
+- name: dim_actor
+  description: Gold dimension containing actor information.
+
+  config:
+    contract:
+      enforced: true
+
+  columns:
+    - name: actor_key
+      description: surrogate key for the actor dimension
+      data_type: text
+      tests:
+        - not_null
+        - unique
+
+    - name: actor_id
+      data_type: smallint
+
+
+    - name: actor_name
+      data_type: varchar
+
+    - name: last_update
+      data_type: timestamp without time zone
+
+
+
+- name: dim_customer
+  description: Gold dimension containing customer information.
+
+  config:
+    contract:
+      enforced: true
+
+  columns:
+    - name: customer_key
+      description: surrogate key for the customer dimension
+      data_type: text
+      tests:
+        - not_null
+        - unique
+
+    - name: customer_id
+      data_type: integer
+      tests:
+        - not_null
+
+    - name: full_name
+      data_type: varchar
+
+    - name: email
+      data_type: varchar
+
+    - name: address_id
+      data_type: smallint
+
+    - name: activebool
+      data_type: boolean
+
+    - name: create_date
+      data_type: date
+
+    - name: last_update
+      data_type: timestamp without time zone
+
+
+- name: dim_film
+  description: Gold dimension containing film information.
+
+  config:
+    contract:
+      enforced: true
+
+  columns:
+    - name: film_key
+      description: surrogate key for the film dimension
+      data_type: text
+      tests:
+        - not_null
+        - unique
+
+    - name: film_id
+      data_type: smallint
+      tests:
+        - not_null
+
+    - name: title
+      data_type: varchar
+
+    - name: description
+      data_type: text
+
+    - name: release_year
+      data_type: integer
+
+    - name: rental_rate
+      data_type: numeric(4,2)
+
+    - name: rating
+      data_type: text
+
+    - name: last_update
+      data_type: timestamp without time zone
