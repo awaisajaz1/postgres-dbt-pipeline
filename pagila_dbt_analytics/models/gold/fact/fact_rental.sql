@@ -1,4 +1,4 @@
-{{ config(
+{# {{ config(
     materialized='incremental',
     unique_key='rental_id',
     incremental_strategy='merge',
@@ -67,4 +67,4 @@ join dim_customer dc
     on r.customer_id = dc.customer_id
 
 join dim_film df
-    on i.film_id = df.film_id
+    on i.film_id = df.film_id #}

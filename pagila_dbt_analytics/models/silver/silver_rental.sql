@@ -1,4 +1,4 @@
-{{ config(
+{# {{ config(
     materialized='table',
     contract={
         'enforced': true
@@ -49,4 +49,4 @@ select
     last_update,
     bronze_load_dts
 from dedup
-where rn = 1
+where rn = 1 #}
