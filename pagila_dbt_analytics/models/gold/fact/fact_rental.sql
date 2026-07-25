@@ -30,15 +30,6 @@ dim_film as (
 
 ),
 
-dim_store as (
-
-    select
-        store_key,
-        store_id
-    from {{ ref('dim_store') }}
-
-),
-
 inventory as (
 
     select
@@ -55,7 +46,6 @@ select
     r.rental_id,
     dc.customer_key,
     df.film_key,
-    ds.store_key,
     r.inventory_id,
     r.rental_date,
     r.return_date,
@@ -78,6 +68,3 @@ join dim_customer dc
 
 join dim_film df
     on i.film_id = df.film_id
-
-join dim_store ds
-    on i.store_id = ds.store_id
