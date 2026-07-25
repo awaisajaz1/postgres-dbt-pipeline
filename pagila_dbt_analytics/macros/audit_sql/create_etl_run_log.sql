@@ -1,4 +1,8 @@
-create table audit.etl_run_log
+{% macro create_etl_run_log() %}
+
+{% set sql %}
+
+create table if not exists audit.etl_run_log
 (
     run_log_id          bigserial primary key,
     batch_id            bigint,
@@ -13,3 +17,10 @@ create table audit.etl_run_log
     rows_deleted        bigint,
     status              varchar(20)
 );
+
+
+{% endset %}
+
+{% do run_query(sql) %}
+
+{% endmacro %}

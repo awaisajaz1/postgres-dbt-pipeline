@@ -1,4 +1,8 @@
-create table audit.etl_pipeline
+{% macro create_etl_pipeline() %}
+
+{% set sql %}
+
+create table if not exists audit.etl_pipeline
 (
     pipeline_id        serial primary key,
     pipeline_name      varchar(100) unique,
@@ -10,3 +14,9 @@ create table audit.etl_pipeline
     created_at         timestamp,
     updated_at         timestamp
 );
+
+{% endset %}
+
+{% do run_query(sql) %}
+
+{% endmacro %}

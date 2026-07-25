@@ -1,4 +1,8 @@
-create table audit.etl_batch
+{% macro create_etl_batch() %}
+
+{% set sql %}
+
+create table if not exists audit.etl_batch
 (
     batch_id           bigserial primary key,
     pipeline_name      varchar(100),
@@ -9,3 +13,9 @@ create table audit.etl_batch
     dbt_version        varchar(20),
     invocation_id      varchar(100)
 );
+
+{% endset %}
+
+{% do run_query(sql) %}
+
+{% endmacro %}
