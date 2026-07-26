@@ -59,12 +59,23 @@ models:
       +post-hook:
         - "{{ log_model_end() }}"
     gold:
-      dimensions:
+      dimension:
         +materialized: table
         schema: gold
-      facts:
+        +pre-hook:
+        - "{{ log_model_start() }}"
+
+        +post-hook:
+          - "{{ log_model_end() }}"
+          
+      fact:
         +materialized: table
         schema: gold
+        +pre-hook:
+        - "{{ log_model_start() }}"
+
+        +post-hook:
+          - "{{ log_model_end() }}"
 seeds:
   pagila_dbt_analytics:
     # Config indicated by + and applies to all files under seeds/
