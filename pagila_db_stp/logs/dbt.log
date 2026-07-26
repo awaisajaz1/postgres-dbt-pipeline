@@ -1,0 +1,44 @@
+[0m12:58:45.222955 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001E366566AC0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001E361F597C0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001E361F59970>]}
+
+
+============================== 12:58:45.227448 | c75f0973-6457-49dc-b0c6-2f33b29c1334 ==============================
+[0m12:58:45.227448 [info ] [MainThread]: Running with dbt=1.10.22
+[0m12:58:45.228446 [debug] [MainThread]: running dbt with arguments {'fail_fast': 'False', 'debug': 'False', 'log_cache_events': 'False', 'send_anonymous_usage_stats': 'True', 'cache_selected_only': 'False', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'log_format': 'default', 'target_path': 'None', 'version_check': 'True', 'empty': 'None', 'printer_width': '80', 'quiet': 'False', 'log_path': 'logs', 'introspect': 'True', 'warn_error': 'None', 'write_json': 'True', 'no_print': 'None', 'invocation_command': 'dbt debug', 'partial_parse': 'True', 'static_parser': 'True', 'profiles_dir': 'C:\\Users\\OMEN\\.dbt', 'use_experimental_parser': 'False', 'use_colors': 'True', 'indirect_selection': 'eager'}
+[0m12:58:45.259010 [info ] [MainThread]: dbt version: 1.10.22
+[0m12:58:45.260040 [info ] [MainThread]: python version: 3.9.13
+[0m12:58:45.261433 [info ] [MainThread]: python path: G:\Coding\postgres-dbt-pipeline\venv\Scripts\python.exe
+[0m12:58:45.261433 [info ] [MainThread]: os info: Windows-10-10.0.26200-SP0
+[0m12:58:45.267170 [info ] [MainThread]: Error importing adapter: No module named 'dbt.adapters.databricks'
+[0m12:58:45.269193 [info ] [MainThread]: Error importing adapter: No module named 'dbt.adapters.databricks'
+[0m12:58:45.449643 [info ] [MainThread]: Using profiles dir at C:\Users\OMEN\.dbt
+[0m12:58:45.450644 [info ] [MainThread]: Using profiles.yml file at C:\Users\OMEN\.dbt\profiles.yml
+[0m12:58:45.451643 [info ] [MainThread]: Using dbt_project.yml file at G:\Coding\postgres-dbt-pipeline\pagila_db_stp\dbt_project.yml
+[0m12:58:45.452659 [info ] [MainThread]: Configuration:
+[0m12:58:45.453646 [info ] [MainThread]:   profiles.yml file [[31mERROR invalid[0m]
+[0m12:58:45.454647 [info ] [MainThread]:   dbt_project.yml file [[31mERROR not found[0m]
+[0m12:58:45.455646 [info ] [MainThread]: Required dependencies:
+[0m12:58:45.456646 [debug] [MainThread]: Executing "git --help"
+[0m12:58:46.201643 [debug] [MainThread]: STDOUT: "b"usage: git [-v | --version] [-h | --help] [-C <path>] [-c <name>=<value>]\n           [--exec-path[=<path>]] [--html-path] [--man-path] [--info-path]\n           [-p | --paginate | -P | --no-pager] [--no-replace-objects] [--bare]\n           [--git-dir=<path>] [--work-tree=<path>] [--namespace=<name>]\n           [--config-env=<name>=<envvar>] <command> [<args>]\n\nThese are common Git commands used in various situations:\n\nstart a working area (see also: git help tutorial)\n   clone     Clone a repository into a new directory\n   init      Create an empty Git repository or reinitialize an existing one\n\nwork on the current change (see also: git help everyday)\n   add       Add file contents to the index\n   mv        Move or rename a file, a directory, or a symlink\n   restore   Restore working tree files\n   rm        Remove files from the working tree and from the index\n\nexamine the history and state (see also: git help revisions)\n   bisect    Use binary search to find the commit that introduced a bug\n   diff      Show changes between commits, commit and working tree, etc\n   grep      Print lines matching a pattern\n   log       Show commit logs\n   show      Show various types of objects\n   status    Show the working tree status\n\ngrow, mark and tweak your common history\n   branch    List, create, or delete branches\n   commit    Record changes to the repository\n   merge     Join two or more development histories together\n   rebase    Reapply commits on top of another base tip\n   reset     Reset current HEAD to the specified state\n   switch    Switch branches\n   tag       Create, list, delete or verify a tag object signed with GPG\n\ncollaborate (see also: git help workflows)\n   fetch     Download objects and refs from another repository\n   pull      Fetch from and integrate with another repository or a local branch\n   push      Update remote refs along with associated objects\n\n'git help -a' and 'git help -g' list available subcommands and some\nconcept guides. See 'git help <command>' or 'git help <concept>'\nto read about a specific subcommand or concept.\nSee 'git help git' for an overview of the system.\n""
+[0m12:58:46.202815 [debug] [MainThread]: STDERR: "b''"
+[0m12:58:46.203639 [info ] [MainThread]:  - git [[32mOK found[0m]
+
+[0m12:58:46.204654 [info ] [MainThread]: Connection test skipped since no profile was found
+[0m12:58:46.204654 [info ] [MainThread]: [31m2 checks failed:[0m
+[0m12:58:46.205777 [info ] [MainThread]: Could not load dbt_project.yml
+Profile loading failed for the following reason:
+Runtime Error
+  Credentials in profile "databrick_project", target "dev" invalid: Runtime Error
+    Could not find adapter type databricks!
+
+Runtime Error
+  Credentials in profile "dbt_databricks", target "dev" invalid: Runtime Error
+    Could not find adapter type databricks!
+
+
+[0m12:58:46.206639 [info ] [MainThread]: Project loading failed for the following reason:
+ project path <G:\Coding\postgres-dbt-pipeline\pagila_db_stp\dbt_project.yml> not found
+
+[0m12:58:46.207647 [debug] [MainThread]: Command `dbt debug` failed at 12:58:46.207647 after 1.09 seconds
+[0m12:58:46.208796 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001E366566AC0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001E361F59BE0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001E3687DD490>]}
+[0m12:58:46.209639 [debug] [MainThread]: Flushing usage events
+[0m12:58:47.451062 [debug] [MainThread]: An error was encountered while trying to flush usage events

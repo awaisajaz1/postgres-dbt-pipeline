@@ -1,6 +1,6 @@
 {% macro deploy_framework() %}
 
-    {{ create_schema() }}
+    {{ create_audit_schema() }}
 
     {{ create_etl_watermark() }}
 
