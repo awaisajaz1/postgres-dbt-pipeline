@@ -76,6 +76,12 @@ models:
 
         +post-hook:
           - "{{ log_model_end() }}"
+
+snapshots:
+  pagila_dbt_analytics:
+    +target_schema: gold
+
+
 seeds:
   pagila_dbt_analytics:
     # Config indicated by + and applies to all files under seeds/
