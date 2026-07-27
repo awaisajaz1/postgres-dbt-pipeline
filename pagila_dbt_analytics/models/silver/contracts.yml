@@ -176,6 +176,8 @@ models:
       - name: return_date
         description: contains the date when the rental was returned
         data_type: timestamp without time zone
+        tests:
+          - not_future_date
       
       - name: staff_id
         description: contains the staff identifier for the rental
@@ -184,6 +186,8 @@ models:
       - name: last_update
         description: contains the last update timestamp for the rental
         data_type: timestamp without time zone
+        tests:
+          - not_future_date
 
       - name: bronze_load_dts
         description: contains the timestamp when the record was loaded into the bronze table

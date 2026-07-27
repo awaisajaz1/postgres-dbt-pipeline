@@ -1,256 +1,259 @@
-# Pagila dbt Analytics Pipeline
+# 🚀 Pagila dbt Analytics Pipeline
 
-A polished dbt-based analytics pipeline for the Pagila sample database, designed to showcase a modern medallion-style architecture with strong observability, auditability, and extensibility.
+<div align="center">
 
-This project demonstrates how to build a production-minded data warehouse workflow using PostgreSQL, dbt, and layered transformation models spanning bronze, silver, and gold stages.
+# Production-Grade Analytics Engineering with dbt
 
-## Overview
+**Author:** **Muhammad Owais Ajaz**  
+*Principal Data Engineer | Business Intelligence Engineer*
 
-The pipeline ingests and transforms Pagila source data into analytics-ready models with a clear separation of concerns:
+[![dbt](https://img.shields.io/badge/dbt-Core-orange)]()
+[![PostgreSQL](https://img.shields.io/badge/PostgreSQL-16-blue)]()
+[![Python](https://img.shields.io/badge/Python-3.11-green)]()
+[![SQL](https://img.shields.io/badge/SQL-ANSI-lightgrey)]()
+[![Architecture](https://img.shields.io/badge/Architecture-Medallion-success)]()
 
-- Bronze layer: raw, source-aligned snapshots with load timestamps
-- Silver layer: cleaned and conformed business entities
-- Gold layer: dimensional and fact-based analytics tables
-- Audit layer: operational logging and watermark tracking for run monitoring and incremental-style control
+</div>
 
-## Architecture
+---
+
+## 🌟 Overview
+
+This project demonstrates how to build a **production-style Analytics Engineering platform** using **dbt Core** and **PostgreSQL**.
+
+Rather than focusing only on data transformations, the project implements enterprise capabilities including:
+
+- ✅ Medallion Architecture
+- ✅ Incremental Processing
+- ✅ Snapshot-based SCD Type 2
+- ✅ Watermark Framework
+- ✅ Audit Framework
+- ✅ Generic Tests
+- ✅ Data Contracts
+- ✅ Documentation & Lineage
+
+---
+
+# 🏗 Overall Architecture
 
 ```mermaid
 flowchart LR
-    A[Pagila Source Database] --> B[Bronze Layer<br/>Raw / Staged Models]
-    B --> C[Silver Layer<br/>Conformed / Cleaned Models]
-    C --> D[Gold Layer<br/>Dimensional & Fact Models]
-    D --> E[Analytics Consumption]
 
-    B --> F[Audit Logs<br/>etl_batch / etl_run_log]
-    C --> F
-    D --> F
+A[(Pagila Database)]
 
-    subgraph Control[Operational Control Layer]
-        F
-        G[Watermarks<br/>etl_watermark]
-    end
+A --> B[Bronze Layer]
+B --> C[Silver Layer]
+C --> S[Customer Snapshot]
+S --> D[Gold Dimensions]
+
+C --> F[Gold Facts]
+
+D --> BI[Power BI / Analytics]
+F --> BI
 ```
 
-### Medallion design with dual implementation patterns
+---
 
-This project follows a medallion architecture while also showing two practical implementation styles:
+# ⚙️ Operational Framework
 
-- Transient implementation: lightweight staging and intermediate processing that supports rapid transformation and debugging
-- Permanent implementation: durable curated tables in bronze, silver, and gold layers for reliable downstream consumption
+```mermaid
+flowchart TD
 
-The pipeline is also log-driven, meaning each run is captured through audit tables so the system is observable, inspectable, and production-friendly.
+Start[dbt Execution]
 
-## What is implemented
+Start --> Batch[etl_batch]
 
-### 1. Layered data modeling
+Batch --> RunLog[etl_run_log]
 
-The project is organized into three transformation layers:
+RunLog --> Watermark[etl_watermark]
 
-- Bronze models: customer, film, inventory, rental, and actor data loaded into structured staging tables
-- Silver models: curated business-ready models for downstream consumption
-- Gold models: dimensional and fact tables for analytics use cases
+RunLog --> Error[etl_error_log]
 
-### 2. Custom audit and control framework
+Watermark --> Silver
 
-To make the pipeline more operationally reliable, the project includes custom audit tables and hooks for tracking each run:
+Silver --> Snapshot
 
-- audit.etl_batch: stores metadata for each dbt invocation
-- audit.etl_run_log: tracks every model execution with start time, finish time, status, and row counts
-- audit.etl_watermark: stores per-model watermark values to support incremental-style processing patterns
+Snapshot --> Gold
+```
 
-These are activated through the dbt hooks in the project configuration so that audit logging happens automatically during each run.
+---
 
-### 3. dbt project configuration
+# 🧱 Medallion Architecture
 
-The project is configured to:
+| Layer | Purpose |
+|-------|---------|
+| 🥉 Bronze | Raw source aligned tables |
+| 🥈 Silver | Cleansed, validated and deduplicated models |
+| 🪙 Gold | Facts & Dimensions for Analytics |
 
-- materialize models in the appropriate layers
-- apply pre/post hooks for runtime logging
-- organize models into clear schemas for bronze, silver, and gold outputs
+---
 
-## Project structure
+# ✨ Key Features
+
+## Data Engineering
+
+- Medallion Architecture
+- Incremental Models
+- Merge Strategy
+- Watermark Processing
+- Deduplication
+- SCD Type 2 Snapshots
+
+## Audit Framework
+
+- ETL Batch Tracking
+- Model Run Logging
+- Error Logging
+- Execution Status
+- Rows Processed
+- Watermark Tracking
+
+## dbt Features
+
+- Sources
+- Refs
+- Macros
+- Hooks
+- Generic Tests
+- Data Contracts
+- Snapshots
+- Documentation
+- Lineage Graph
+
+---
+
+# 📁 Project Structure
 
 ```text
-pagila_dbt_analytics/
-├── macros/
-│   └── audit_sql/
-│       ├── create_etl_batch.sql
-│       ├── create_etl_run_log.sql
-│       ├── create_etl_watermark.sql
-│       ├── log_model_start.sql
-│       ├── log_model_end.sql
-│       └── deploy_framework.sql
-├── models/
-│   ├── bronze/
-│   ├── silver/
-│   └── gold/
-│       ├── dimension/
-│       └── fact/
-├── analyses/
-├── tests/
+pagila_dbt_analytics
+│
+├── models
+│   ├── bronze
+│   ├── silver
+│   └── gold
+│       ├── dimensions
+│       └── facts
+│
+├── snapshots
+├── macros
+├── tests
+│   └── generic
+├── analyses
+├── seeds
 └── dbt_project.yml
 ```
 
-## Complete setup guide for a new dbt user
+---
 
-Follow these steps to get this project running on your machine.
+# 🔄 Pipeline Execution
 
-### 1. Prerequisites
+```mermaid
+flowchart LR
 
-Make sure you have the following installed:
+A[Load Bronze]
 
-- Python 3.9+
-- PostgreSQL
+A --> B[dbt run --select tag:silver]
+
+B --> C[dbt snapshot]
+
+C --> D[dbt run --select tag:gold]
+
+D --> E[dbt test]
+
+E --> F[dbt docs generate]
+```
+
+---
+
+# 📊 Data Quality
+
+### Built-in Tests
+
+- not_null
+- unique
+- relationships
+- accepted_values
+
+### Custom Generic Tests
+
+- not_future_date
+- positive_amount
+
+---
+
+# 📈 Audit Tables
+
+| Table | Purpose |
+|------|----------|
+| audit.etl_batch | Batch execution tracking |
+| audit.etl_run_log | Model execution history |
+| audit.etl_error_log | Error logging |
+| audit.etl_watermark | Incremental processing control |
+
+---
+
+# 💻 Technology Stack
+
 - dbt Core
-- A PostgreSQL client or tool such as pgAdmin or psql
+- PostgreSQL
+- Python
+- SQL
+- Jinja
+- Git
 
-### 2. Create a virtual environment
+---
 
-```bash
-python -m venv venv
-source venv/bin/activate
-```
-
-On Windows PowerShell:
-
-```powershell
-python -m venv venv
-.\venv\Scripts\Activate.ps1
-```
-
-### 3. Install dbt
-
-```bash
-pip install dbt-postgres
-```
-
-If you are using a different adapter, install the matching one accordingly.
-
-### 4. Create the PostgreSQL database
-
-Create a PostgreSQL database for the project and make sure you have:
-
-- a database name
-- a username
-- a password
-- a host and port
-
-### 5. Load the Pagila sample data
-
-The project expects the Pagila sample database to be available as a source.
-
-You can import the SQL files from the Pagila folder included in this repository.
-
-### 6. Configure your dbt profile
-
-Create or update your dbt profile file so that dbt can connect to PostgreSQL.
-
-Typical location:
-
-- Linux/macOS: ~/.dbt/profiles.yml
-- Windows: %USERPROFILE%\.dbt\profiles.yml
-
-Example:
-
-```yaml
-pagila_dbt_analytics:
-  target: dev
-  outputs:
-    dev:
-      type: postgres
-      host: localhost
-      user: postgres
-      pass: your_password
-      port: 5432
-      dbname: pagila_db
-      schema: public
-      threads: 1
-      keepalives_idle: 0
-```
-
-### 7. Install project dependencies
-
-From the project directory:
-
-```bash
-cd pagila_dbt_analytics
-dbt deps
-```
-
-### 8. Deploy the audit framework
-
-Before running the models, create the audit tables:
-
-```bash
-dbt run-operation deploy_framework
-```
-
-This initializes the operational tables used by the pipeline.
-
-### 9. Run the pipeline
-
-```bash
-dbt run
-dbt test
-```
-
-### 10. Generate documentation
-
-```bash
-dbt docs generate
-dbt docs serve
-```
-
-## Audit framework deployment
-
-The audit tables are created using a dedicated dbt run operation:
-
-```bash
-dbt run-operation deploy_framework
-```
-
-This command initializes the operational foundation for the pipeline by creating:
-
-- audit.etl_batch for run tracking
-- audit.etl_run_log for model-level execution history
-- audit.etl_watermark for incremental-style control points
-
-These tables give the pipeline real operational visibility and make it suitable for production-style monitoring and troubleshooting.
-
-## Run commands
+# 🚀 Getting Started
 
 ```bash
 dbt deps
-dbt run
+
+dbt run-operation deploy_framework
+
+dbt run --select tag:silver
+
+dbt snapshot
+
+dbt run --select tag:gold
+
 dbt test
+
 dbt docs generate
+
 dbt docs serve
 ```
 
-## Why this project is valuable
+---
 
-This implementation is more than a sample project. It reflects a production-ready mindset by combining:
+# 🎯 Enterprise Capabilities
 
-- layered analytics modeling with bronze, silver, and gold stages
-- reusable dbt macros for maintainability
-- built-in auditability for troubleshooting and observability
-- operational control tables for run tracking and watermark management
-- a clean, GitHub-friendly structure for collaboration and extension
+- Production-ready project structure
+- Reusable Macros
+- Generic Test Library
+- Operational Audit Framework
+- Snapshot History
+- Incremental Processing
+- Data Contracts
+- Model Lineage
+- Extensible Architecture
 
-## Production-ready characteristics
+---
 
-This pipeline is designed to be practical for real-world analytics engineering work because it supports:
+# 🔮 Roadmap
 
-- repeatable execution with dbt orchestration
-- transparent monitoring through audit logs
-- controlled data processing patterns using watermark tracking
-- scalable extension to additional business domains and data sources
+- dbt Packages
+- Exposures
+- Metrics
+- Semantic Layer
+- CI/CD (GitHub Actions / Azure DevOps)
+- Observability Dashboard
 
-## Notes
+---
 
-The project is intentionally structured to be easy to extend. You can add more source tables, additional gold models, data quality tests, or more advanced incremental logic as the pipeline grows.
+# 👨‍💻 About the Author
 
-## Credits
+**Muhammad Owais Ajaz**
 
-Built as a dbt analytics workflow using the Pagila sample database and a custom audit framework for transparency, monitoring, and production-style pipeline readiness.
+Principal Data Engineer | Business Intelligence Engineer
+
+This repository was built as a production-inspired reference implementation showcasing modern Analytics Engineering practices using dbt Core and PostgreSQL.
