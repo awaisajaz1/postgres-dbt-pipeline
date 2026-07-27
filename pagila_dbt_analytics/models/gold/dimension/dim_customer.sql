@@ -12,22 +12,20 @@ with src as (
 
 )
 
+
 select
 
-    {{ dbt_utils.generate_surrogate_key(['customer_id']) }} as customer_key,
+    {{ dbt_utils.generate_surrogate_key(['src.customer_id']) }} as customer_key,
 
-    customer_id,
-
+    src.customer_id,
     full_name,
-
     email,
-
     address_id,
-
     activebool,
-
     create_date,
-
-    last_update
+    last_update,
+    cast(total_records as integer) as total_records
 
 from src
+left join {{ ref('eph_customer_act_records') }} as act
+    on src.customer_id = act.customer_id
