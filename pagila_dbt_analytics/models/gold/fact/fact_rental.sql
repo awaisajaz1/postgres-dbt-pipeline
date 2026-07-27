@@ -38,6 +38,12 @@ inventory as (
         store_id
     from {{ ref('silver_inventory') }}
 
+),
+customer_scd as (
+
+    select *
+    from {{ ref('customer_snapshot') }}
+
 )
 
 select
@@ -45,6 +51,7 @@ select
     {{ dbt_utils.generate_surrogate_key(['r.rental_id']) }} as rental_key,
     r.rental_id,
     dc.customer_key,
+    cs.dbt_scd_id as customer_scd_id,
     df.film_key,
     r.inventory_id,
     r.rental_date,
@@ -68,3 +75,7 @@ join dim_customer dc
 
 join dim_film df
     on i.film_id = df.film_id
+
+join customer_scd cs
+    on r.customer_id = cs.customer_id
+    and cs.dbt_valid_to is null
