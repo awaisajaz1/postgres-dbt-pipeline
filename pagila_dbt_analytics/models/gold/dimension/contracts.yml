@@ -63,6 +63,11 @@ models:
 
       - name: last_update
         data_type: timestamp without time zone
+      
+      - name: total_records
+        description: contains the total number of records for the customer
+        data_type: integer
+        
 
   - name: dim_film
     description: Gold dimension containing film information.
