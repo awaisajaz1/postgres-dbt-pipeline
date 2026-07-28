@@ -163,6 +163,14 @@ D --> E[dbt test]
 E --> F[dbt docs generate]
 ```
 
+## Run Flow
+
+Use the following command to execute the full data pipeline in order:
+
+```bash
+dbt run --select bronze silver snapshot gold
+```
+
 ---
 
 # 📊 Data Quality
