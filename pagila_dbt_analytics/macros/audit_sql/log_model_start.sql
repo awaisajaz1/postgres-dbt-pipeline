@@ -14,11 +14,8 @@ insert into audit.etl_run_log
 select
     batch_id,
     '{{ model.name }}',
-
     split_part('{{ model.name }}','_',1),
-
     current_timestamp,
-
     'RUNNING'
 
 from audit.etl_batch

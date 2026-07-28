@@ -80,6 +80,11 @@ models:
 snapshots:
   pagila_dbt_analytics:
     +target_schema: gold
+    +pre-hook:
+        - "{{ log_model_start() }}"
+
+    +post-hook:
+          - "{{ log_model_end() }}"
 
 
 seeds:
