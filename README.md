@@ -52,7 +52,7 @@ D --> BI[Power BI / Analytics]
 F --> BI
 ```
 
-![dbt Lineage Model](./dbt lineage model.png)
+![dbt Lineage Model](./dbt_lineage_model.png)
 
 ---
 
