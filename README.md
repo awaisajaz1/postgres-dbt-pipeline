@@ -52,6 +52,8 @@ D --> BI[Power BI / Analytics]
 F --> BI
 ```
 
+![dbt Lineage Model](./dbt lineage model.png)
+
 ---
 
 # ⚙️ Operational Framework
