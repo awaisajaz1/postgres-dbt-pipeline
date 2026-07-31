@@ -2,13 +2,13 @@ exposures:
   - name: rental_dashboard
     label: rental_dashboard
     description: "This exposure represents the rental data in the pagila database."
-    maturation: high
+    maturity: high
     url: https://example.com/dashboards/rental_dashboard
     type: dashboard
     depends_on:
       - ref('fact_rental')
       - ref('dim_customer')
       - ref('dim_film')
-    owner:
+    owner:  
       name: Data Engineering Team
-      email: data-eng@example.com
+      email: data-eng@example.com 
